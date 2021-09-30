@@ -26,7 +26,7 @@ spec:
 
 ## Apply the change
 ```sh
-$ kubectl apply -f aerospike-cluster.yaml
+kubectl apply -f aerospike-cluster.yaml
 ```
 
 ## Check the pods
@@ -34,7 +34,7 @@ $ kubectl apply -f aerospike-cluster.yaml
 The pods will undergo a rolling restart.
 
 ```sh
-$ kubectl get pods -n aerospike
+kubectl get pods -n aerospike
 NAME          READY   STATUS              RESTARTS   AGE
 aerocluster-0-0     1/1     Running         0          3m6s
 aerocluster-0-1     1/1     Running         0          3m6s
@@ -44,7 +44,7 @@ aerocluster-0-3     1/1     Terminating     0          30s
 After all the pods have restarted, use kubectl describe to get the status of the cluster. Check `image` for all Pods.
 
 ```sh
-$ kubectl -n aerospike describe aerospikecluster aerocluster
+kubectl -n aerospike describe aerospikecluster aerocluster
 Name:         aerocluster
 Namespace:    aerospike
 Kind:         AerospikeCluster

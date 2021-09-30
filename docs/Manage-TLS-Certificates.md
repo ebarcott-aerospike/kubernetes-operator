@@ -11,7 +11,7 @@ For more details, visit [TLS configuration](https://docs.aerospike.com/docs/conf
 
 Assuming your TLS secrets are in deploy/secrets folder, create a Kubernetes secret like so
 ```sh
-$ kubectl create secret generic aerospike-secret --from-file=deploy/secrets -n aerospike
+kubectl create secret generic aerospike-secret --from-file=deploy/secrets -n aerospike
 ```
 
 ## Create the TLS specific Aerospike configuration.

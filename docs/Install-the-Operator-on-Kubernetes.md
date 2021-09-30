@@ -34,9 +34,9 @@ Download the Aerospike Operator package [here](https://github.com/aerospike/aero
 To clone the Aerospike Github Operator repository:
 
 ```sh
-$ git clone https://github.com/aerospike/aerospike-kubernetes-operator.git
-$ cd aerospike-kubernetes-operator
-$ git checkout 1.0.1
+git clone https://github.com/aerospike/aerospike-kubernetes-operator.git
+cd aerospike-kubernetes-operator
+git checkout 1.0.1
 ```
 
 The deploy folder has the prerequisite files.
@@ -46,7 +46,7 @@ The deploy folder has the prerequisite files.
 Create a new Kubernetes namespace for Aerospike. This will help in putting all Aerospike related resource in a single logical space.
 
 ```sh
-$ kubectl create namespace aerospike
+kubectl create namespace aerospike
 ```
 
 ## Register Aerospike CRDs
@@ -54,7 +54,7 @@ $ kubectl create namespace aerospike
 Use the [aerospike.com_aerospikeclusters_crd.yaml](https://github.com/aerospike/aerospike-kubernetes-operator/tree/1.0.1/deploy/crds/aerospike.com_aerospikeclusters_crd.yaml) file to register the operator's CRDs.
 
 ```sh
-$ kubectl apply -f deploy/crds/aerospike.com_aerospikeclusters_crd.yaml
+kubectl apply -f deploy/crds/aerospike.com_aerospikeclusters_crd.yaml
 ```
 
 ## Setup RBAC
@@ -62,7 +62,7 @@ $ kubectl apply -f deploy/crds/aerospike.com_aerospikeclusters_crd.yaml
 Setup [Role based access control (RBAC)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/). RBAC helps in regulating access to the Kubernetes cluster and its resources based on the roles of individual users within your organization.
 
 ```sh
-$ kubectl apply -f deploy/rbac.yaml
+kubectl apply -f deploy/rbac.yaml
 ```
 
 ## Deploy the Aerospike Operator
@@ -145,13 +145,13 @@ spec:
 
 Once you have the  deploy/operator.yaml file deploy the operator using the following commands.
 ```sh
-$ kubectl apply -f deploy/operator.yaml
+kubectl apply -f deploy/operator.yaml
 ```
 
 ## Verify Operator is running
 
 ```sh
-$ kubectl get pod -n aerospike
+kubectl get pod -n aerospike
 ```
 
 ```
@@ -165,7 +165,7 @@ This step could take some time initially as the operator image needs to be downl
 
 Use the pod name obtained above to check the Operator logs.
 ```sh
-$ kubectl -n aerospike logs -f aerospike-kubernetes-operator-5587bc7758-psn5t
+kubectl -n aerospike logs -f aerospike-kubernetes-operator-5587bc7758-psn5t
 ```
 ```
 t=2020-03-26T06:23:42+0000 lvl=info msg="Operator Version: 0.0.1" module=cmd caller=main.go:79

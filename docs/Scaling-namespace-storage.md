@@ -106,14 +106,14 @@ spec:
 
 ## Apply the change
 ```sh
-$ kubectl apply -f aerospike-cluster.yaml
+kubectl apply -f aerospike-cluster.yaml
 ```
 This will create a new rack with `id: 2` and updated `storage` config. Old data will be migrated to new rack. Old rack will be removed gracefully.
 
 ## Check the pods
 
 ```sh
-$ kubectl get pods -n aerospike
+kubectl get pods -n aerospike
 NAME                READY   STATUS          RESTARTS   AGE
 aerocluster-2-0     1/1     Running         0          3m6s
 aerocluster-2-1     1/1     Running         0          3m6s

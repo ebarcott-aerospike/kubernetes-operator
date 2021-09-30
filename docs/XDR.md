@@ -47,7 +47,7 @@ Get full CR file [here](https://github.com/aerospike/aerospike-kubernetes-operat
 If destination cluster is security enabled then `aerospike-secret` created in this section should also have `security_credentials_DC1.txt` file for destination DC.
 
 ```sh
-$ cat security_credentials_DC1.txt
+cat security_credentials_DC1.txt
 credentials
 {
    username xdr_user

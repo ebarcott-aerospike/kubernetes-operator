@@ -33,16 +33,16 @@ In this example, there is a local SSD (identified as `/dev/nvme0n1`). This shoul
 Before deploying local volume provisioner, create a discovery directory on each worker node and link the block devices to be used in the discovery directory. The provisioner will discover local block volumes from this directory.
 
 ```
-$ lsblk
+lsblk
 NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
 nvme0n1       8:16   0  375G  0 disk
 nvme0n2       8:32   0  375G  0 disk
 ```
 
 ```sh
-$ mkdir /mnt/disks
-$ sudo ln -s /dev/nvme0n1 /mnt/disks/
-$ sudo ln -s /dev/nvme0n2 /mnt/disks/
+mkdir /mnt/disks
+sudo ln -s /dev/nvme0n1 /mnt/disks/
+sudo ln -s /dev/nvme0n2 /mnt/disks/
 ```
 
 :::note
@@ -62,14 +62,14 @@ The storage class yaml is defined in [local_storage_class.yaml](https://github.c
 Create local storage class and then deploy the provisioner.
 
 ```sh
-$ kubectl create -f deploy/samples/storage/local_storage_class.yaml
+kubectl create -f deploy/samples/storage/local_storage_class.yaml
 
-$ kubectl create -f deploy/samples/storage/aerospike_local_volume_provisioner.yaml
+kubectl create -f deploy/samples/storage/aerospike_local_volume_provisioner.yaml
 ```
 
 Verify the discovered and created PV objects,
 ```sh
-$ kubectl get pv
+kubectl get pv
 
 NAME                CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM   STORAGECLASS     REASON   AGE
 local-pv-342b45ed   375Gi      RWO            Delete           Available           "local-ssd"            3s

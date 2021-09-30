@@ -27,7 +27,7 @@ spec:
 
 ## Apply the change
 ```sh
-$ kubectl apply -f aerospike-cluster.yaml
+kubectl apply -f aerospike-cluster.yaml
 ```
 
 ## Check the pods
@@ -35,7 +35,7 @@ $ kubectl apply -f aerospike-cluster.yaml
 Pods will undergo a rolling restart.
 
 ```sh
-$ kubectl get pods -n aerospike
+kubectl get pods -n aerospike
 NAME          READY   STATUS              RESTARTS   AGE
 aerocluster-0-0     1/1     Running         0          3m6s
 aerocluster-0-1     1/1     Running         0          3m6s
@@ -47,7 +47,7 @@ After all the pods have restarted, use kubectl describe to get status of the clu
 Check `spec.aerospikeConfig.service.proto-fd-max` in status.
 
 ```sh
-$ kubectl -n aerospike describe aerospikecluster aerocluster
+kubectl -n aerospike describe aerospikecluster aerocluster
 Name:         aerocluster
 Namespace:    aerospike
 Kind:         AerospikeCluster

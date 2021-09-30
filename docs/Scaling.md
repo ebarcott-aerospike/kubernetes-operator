@@ -23,13 +23,13 @@ spec:
 
 ## Apply the change
 ```sh
-$ kubectl apply -f aerospike-cluster.yaml
+kubectl apply -f aerospike-cluster.yaml
 ```
 
 ## Check the pods
 
 ```sh
-$ kubectl get pods -n aerospike
+kubectl get pods -n aerospike
 NAME          READY   STATUS      RESTARTS   AGE
 aerocluster-0-0     1/1     Running     0          3m6s
 aerocluster-0-1     1/1     Running     0          3m6s

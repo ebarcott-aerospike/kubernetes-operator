@@ -10,7 +10,7 @@ Kubernetes secrets are used to store information securely. You can create secret
 To create a Kubernetes secret for connectivity to the Aerospike cluster, the Aerospike features.conf can be packaged in a single directory and converted to Kubernetes secrets with the following command:
 
 ```sh
-$ kubectl  -n aerospike create secret generic aerospike-secret --from-file=deploy/secrets
+kubectl  -n aerospike create secret generic aerospike-secret --from-file=deploy/secrets
 ```
 
 To deploy through the Operator, update the name of the secret in the aerospikeConfigSecret spec of the custom resource that defines the Aerospike cluster. You can also refer to files that are in the folder when you are configuring parameters for the Aerospike cluster in the aerospikeConfig spec of the custom resource. 
@@ -20,7 +20,7 @@ To deploy through the Operator, update the name of the secret in the aerospikeCo
 
 To create a secret containing the password for Aerospike cluster admin user by passing the password from the command line:
 ```sh
-$ kubectl  -n aerospike create secret generic auth-secret --from-literal=password='admin123'
+kubectl  -n aerospike create secret generic auth-secret --from-literal=password='admin123'
 ```
 
 To deploy with the Operator, you must include the names of the secrets for each user in the custom resource file. For example, suppose that you want to give two users access to the Aerospike cluster. For the first user, you create a secret named auth-secret. For the second user, you create a secret named user1-secret. To enable security for the cluster:

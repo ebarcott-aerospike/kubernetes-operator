@@ -24,7 +24,7 @@ Run the kubectl describe command to get the IP addresses and port numbers:
 The **Status > Pods*** section provides pod-wise access, alternate access, TLS access, and TLS alternate access endpoints as well as TLS name (if TLS is configured) to be used to access the cluster.
 
 ```sh
-$ kubectl -n aerospike describe aerospikecluster aerocluster
+kubectl -n aerospike describe aerospikecluster aerocluster
 Name:         aerocluster
 Namespace:    aerospike
 Labels:       <none>
@@ -134,10 +134,10 @@ kubectl run -it --rm --restart=Never aerospike-tool -n aerospike --image=aerospi
 
 To use asadm from outside the Kubernetes network:
 ```sh
-$ asadm -h 34.70.193.192:31312 -U admin -P admin123 --services-alternate
+asadm -h 34.70.193.192:31312 -U admin -P admin123 --services-alternate
 ```
 
 To use asadm from within the Kubernetes network:
 ```sh
-$ asadm -h 10.128.15.225:31312 -U admin -P admin123
+asadm -h 10.128.15.225:31312 -U admin -P admin123
 ```

@@ -34,17 +34,17 @@ To apply a sample storage class based on your Kubernetes environment:
 
 For GKE
 ```sh
-$ kubectl apply -f deploy/samples/storage/gce_ssd_storage_class.yaml
+kubectl apply -f deploy/samples/storage/gce_ssd_storage_class.yaml
 ```
 
 For EKS
 ```sh
-$ kubectl apply -f deploy/samples/storage/eks_ssd_storage_class.yaml
+kubectl apply -f deploy/samples/storage/eks_ssd_storage_class.yaml
 ```
 
 For MicroK8s
 ```sh
-$ kubectl apply -f deploy/samples/storage/microk8s_filesystem_storage_class.yaml
+kubectl apply -f deploy/samples/storage/microk8s_filesystem_storage_class.yaml
 ```
 
 See [Storage Provisioning](Storage-provisioning.md) for more details on configuring persistent storage.
@@ -55,12 +55,12 @@ Create secrets to setup Aerospike authentication, TLS, and features.conf. See [M
 Aerospike secrets like TLS certificates, security credentials, and features.conf can be packaged in a single directory and converted to Kubernetes secrets like so
 
 ```sh
-$ kubectl  -n aerospike create secret generic aerospike-secret --from-file=deploy/secrets
+kubectl  -n aerospike create secret generic aerospike-secret --from-file=deploy/secrets
 ```
 
 Create a secret containing the password for Aerospike cluster admin user by passing the password from the command line.
 ```sh
-$ kubectl  -n aerospike create secret generic auth-secret --from-literal=password='admin123'
+kubectl  -n aerospike create secret generic auth-secret --from-literal=password='admin123'
 ```
 
 ## Create Aerospike cluster Custom Resource (CR)
@@ -74,7 +74,7 @@ This custom resource file can be edited later on to make any changes/manage the 
 
 Use the CR yaml file that you created to deploy an Aerospike cluster.
 ```sh
-$ kubectl apply -f deploy/samples/dim_nostorage_cluster_cr.yaml
+kubectl apply -f deploy/samples/dim_nostorage_cluster_cr.yaml
 ```
 
 :::note
@@ -85,7 +85,7 @@ Replace the file name with CR yaml file for your cluster.
 Ensure that the aerospike-kubernetes-operator creates a [StatefulSet](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/) for the CR.
 
 ```sh
-$ kubectl get statefulset -n aerospike
+kubectl get statefulset -n aerospike
 NAME      READY   AGE
 aerocluster-0   2/2     24s
 ```
@@ -93,7 +93,7 @@ aerocluster-0   2/2     24s
 Check the pods to confirm the status. This step may take time as the pod's provision resources, initialize, and are ready. Please wait for the pods to switch to the running state.
 
 ```sh
-$ kubectl get pods -n aerospike
+kubectl get pods -n aerospike
 NAME          READY   STATUS      RESTARTS   AGE
 aerocluster-0-0     1/1     Running     0          48s
 aerocluster-0-1     1/1     Running     0          48s
