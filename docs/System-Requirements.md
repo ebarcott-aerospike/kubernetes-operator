@@ -3,26 +3,38 @@ title: System Requirements
 description: System Requirements
 ---
 
-## What does it support?
+The Aerospike Kubernetes Operator deploys and manages Aerospike Database Enterprise Edition, versions 4.9.0 to 5.6.0.13.  
 
-The Aerospike Operator deploys and manages Aerospike Database Enterprise Edition, versions 4.9.0 to 5.6.0.13.  
+:::note
+Although the Aerospike Kubernetes Operator can be used to deploy Aerospike Community Edition, most of the Operator's features are only compatible with Aerospike Enteprise Edition.
+:::
 
-The Operator is supported on the following platforms:
+The Operator is supported on:
 
- * Kubernetes 1.16, 1.17, 1.18, 1.19, 1.20, 1.21 and 1.22
- * Openshift 4.6, 4.7 and 4.8
- * Amazon Elastic Kubernetes Service 
- * Google Kubernetes Engine
- * Microsoft Azure Kubernetes Service
+* Kubernetes 1.16, 1.17, 1.18, 1.19, 1.20, 1.21, and 1.22
+* Openshift 4.6, 4.7, and 4.8
 
-## How does it work?
+On the following platforms:
 
-The Aerospike Operator extends Kubernetes by defining types that represent Aerospike clusters. These types are declarative; they define what the cluster should look like. The Operator monitors Kubernetes for Aerospike resources, creating or updating Aerospike Clusters to match the defined specification. 
+* Amazon Elastic Kubernetes Service
+* Google Kubernetes Engine
+* Microsoft Azure Kubernetes Service
+* Locally via Minikube or Minik8s
 
-## Get started
- * [Install the Operator](Install-the-Operator-on-Kubernetes.md)
- * [Create the Aerospike cluster](Create-Aerospike-cluster.md)
+## Local Computer
 
-## See also
- * [Kubernetes](https://kubernetes.io)
- * [Limitations](Limitations.md)
+Your local computer (the computer where you will be running kubectl commands) needs:
+
+* kubectl v1.11.3+
+* A copy of the files in the Aerospike Kubernetes Operator GitHub repo
+* Operator SDK CLI version 1.10.1
+
+### Copy Files from the Aerospike Kubernetes Operator GitHub Repo
+
+You need a copy of [the Aerospike Kubernetes Operator GitHub repo](https://github.com/aerospike/aerospike-kubernetes-operator) on your local computer. The repo contains scripts used by the Operator, as well as many files which are used throughout this documentation as examples.
+
+Either clone this repo or download the ZIP file to your computer [from the GitHub page](https://github.com/aerospike/aerospike-kubernetes-operator)
+
+### Install the Operator SDK CLI
+
+Install operator-sdk version 1.10.1 using the installation [guide](https://v1-10-x.sdk.operatorframework.io/docs/installation/)

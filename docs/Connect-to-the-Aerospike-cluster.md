@@ -3,23 +3,31 @@ title: Connect To The Aerospike Cluster
 description: Connect To The Aerospike Cluster
 ---
 
-You can connect to an Aerospike cluster deployed by Aerospike Kubernetes Operator through asadm or through applications that use Aerospike client libraries. 
+You can connect to an Aerospike cluster deployed by Aerospike Kubernetes Operator through [Aerospike Admin (asadm)](https://docs.aerospike.com/docs/tools/asadm/) or through applications which use Aerospike client libraries.
 
-## Port access
-When the Aerospike cluster is deployed in a single pod per Kubernetes host mode, ports `3000 (service port)` and `4333 (TLS port)` on all Kubernetes hosts should be accessible to all client and tools.
+## Port Access
 
-When the Aerospike cluster is configured to have multiple pods per Kubernetes host mode, port-range `(30000–32767)` on all Kubernetes hosts should be accessible to all client and tools.
+When the Aerospike cluster is deployed in a **single** pod per Kubernetes host mode, ports `3000 (service port)` and `4333 (TLS port)` on all Kubernetes hosts should be accessible to all clients and tools.
+
+When the Aerospike cluster is configured to have **multiple** pods per Kubernetes host mode, port range `(30000–32767)` on all Kubernetes hosts should be accessible to all clients and tools.
 
 Configure the firewall rules for the Kubernetes cluster accordingly.
 
-Also see [Cluster-configuration-settings](Cluster-configuration-settings.md) file for the use of `multiPodPerHost` setting.
+See the [Cluster Configuration Settings](Cluster-configuration-settings.md) section for more information on using the `multiPodPerHost` setting.
 
-## Obtain the Aerospike node endpoints
+## Endpoints
 
-Run the kubectl describe command to get the IP addresses and port numbers:
+Use `kubectl describe` to get the IP addresses and port numbers:
 
- kubectl -n <Kubernetes_namespace> describe aerospikecluster <Aerospike_cluster>
+```sh
+ kubectl -n [namespace] describe aerospikecluster [Aerospike_cluster name]
+```
 
+For example, the to get the IP addresses and port numbers for the cluster `aerocluster` in the `aerospike` namespace is:
+
+```sh
+kubectl -n aerospike describe aerospikecluster aerocluster
+```
 
 The **Status > Pods*** section provides pod-wise access, alternate access, TLS access, and TLS alternate access endpoints as well as TLS name (if TLS is configured) to be used to access the cluster.
 

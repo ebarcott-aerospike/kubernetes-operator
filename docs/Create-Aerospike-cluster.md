@@ -3,85 +3,79 @@ title: Create Aerospike Cluster
 description: Create Aerospike Cluster
 ---
 
-To deploy an Aerospike cluster using the Operator, you will create an Aerospike custom resource file that describes the cluster (e.g. number of nodes, Aerospike configuration, system resources, etc.), and then push that configuration file into Kubernetes.
+To deploy Aerospike using the Operator, you will create an Aerospike custom resource file which describes the cluster (including its number of nodes, the Aerospike configuration, system resources, etc.). You will then push that configuration file to your Kubernetes cluster(s).
 
 ## Prerequisites
 
-Before deploying your Aerospike cluster ensure that you have:
+Before creating your Aerospike cluster, you must:
 
-- Reviewed the prerequisites and system requirements
-- Deployed the Aerospike Kubernetes Operator successfully
+* Download a copy of the Aerospike Kubernetes Operator GitHub repo (`aerospike-kubernetes-operator`) to your local computer. See [system requirements](System-Requirements.md) for more information.
+* [Install the Aerospike Kubernetes Operator](Install-the-Operator-on-Kubernetes.md) on your Kubernetes cluster(s).
 
-## Prepare the Aerospike cluster configuration:
+## Prepare the Aerospike Cluster Configuration
 
-The Operator package contains example YAML configuration files for the cluster deployment. After unpacking the files, the resulting directory will be /aerospike-kubernetes-operator/deploy.  Make sure to cd into this directory before you run the commands.
+The Aerospike Kubernetes Operator GitHub repo contains example YAML configuration files for the cluster deployment. These files are located in the `aerospike-kubernetes-operator/config/samples` directory.
 
-The use case for your cluster will help you to determine which configuration parameters that you need to set in the custom resource [(CR)](https://github.com/aerospike/aerospike-kubernetes-operator/wiki/Configuration) file. Identify your requirements for storage, if you plan to [enable XDR](XDR.md), or [manage TLS certificates](Manage-TLS-Certificates.md) for network security with your Aerospike clusters.
+:::note
+The following commands include file paths which are relative to the `aerospike-kubernetes-operator` directory. Be sure to either cd into this directory before you run the commands, or edit the command to include the correct file path for your system.
+:::
 
-## Configure persistent storage
+The use case for your cluster will help you to determine which configuration parameters you need to set in the [custom resource (CR)](https://github.com/aerospike/aerospike-kubernetes-operator/wiki/Configuration) file. Identify your requirements for storage, if you plan to [enable XDR](XDR.md), or [manage TLS certificates](Manage-TLS-Certificates.md) for network security with your Aerospike clusters.
 
-The Aerospike Operator is designed to work with dynamically provisioned storage classes. A [storage class](https://kubernetes.io/docs/concepts/storage/storage-classes/) is used to dynamically provision the persistent storage. Aerospike Server pods may have different storage volumes associated with each service.
+## Configure Persistent Storage
 
-To learn more about configuring persistent storage:
-* For Amazon Elastic Kubernetes Service, the instructions are [here](https://docs.aws.amazon.com/eks/latest/userguide/storage-classes.html).
-* For Google Kubernetes Engine, the instructions are [here](https://cloud.google.com/kubernetes-engine/docs/how-to/persistent-volumes/ssd-pd)
-* For Microsoft Azure Kubernetes Service, the instructions are [here](https://docs.microsoft.com/en-us/azure/aks/azure-disks-dynamic-pv).
+The Aerospike Operator is designed to work with dynamically-provisioned storage classes. Aerospike Server pods may have different storage volumes associated with each service.
 
 Persistent storage on the pods will use these storage class provisioners to provision storage.
 
-To apply a sample storage class based on your Kubernetes environment:
+Apply a sample storage class based on your Kubernetes environment:
 
-For GKE
-```sh
-$ kubectl apply -f config/samples/storage/gce_ssd_storage_class.yaml
-```
-
-For EKS
-```sh
-$ kubectl apply -f config/samples/storage/eks_ssd_storage_class.yaml
-```
-
-For MicroK8s
-```sh
-$ kubectl apply -f config/samples/storage/microk8s_filesystem_storage_class.yaml
-```
+* EKS: `kubectl apply -f config/samples/storage/eks_ssd_storage_class.yaml`
+* GCE: `kubectl apply -f config/samples/storage/gce_ssd_storage_class.yaml`
+* Microk8s: `kubectl apply -f config/samples/storage/microk8s_filesystem_storage_class.yaml`
 
 See [Storage Provisioning](Storage-provisioning.md) for more details on configuring persistent storage.
 
-## Create secrets
-Create secrets to set up Aerospike authentication, TLS, and `features.conf`. See [Manage-TLS-Certificates](Manage-TLS-Certificates.md) for more details.
+## Create Secrets
 
-Aerospike secrets like TLS certificates, security credentials, and `features.conf` can be packaged in a single directory and converted to Kubernetes secrets like so
+Next, create Secrets to set up features like Aerospike authentication, TLS, and the cluster admin password. See the [Manage TLS Certificates](Manage-TLS-Certificates.md) section for more details.
+
+The example `config/samples/secrets` directory includes a collection of example TLS certificates, security credentials, and more. Apply these files as a Kubernetes Secret:
 
 ```sh
-$ kubectl  -n aerospike create secret generic aerospike-secret --from-file=config/samples/secrets
+kubectl  -n aerospike create secret generic aerospike-secret --from-file=config/samples/secrets
 ```
 
-Create a secret containing the password for Aerospike cluster admin user by passing the password from the command line.
+Create a Secrets containing the password for Aerospike cluster admin:
+
 ```sh
-$ kubectl  -n aerospike create secret generic auth-secret --from-literal=password='admin123'
+kubectl  -n aerospike create secret generic auth-secret --from-literal=password='admin123'
 ```
 
-## Create Aerospike cluster Custom Resource (CR)
+## Create Aerospike Cluster Custom Resource (CR)
 
-Refer to the [cluster configuration settings](Cluster-configuration-settings.md) section for details on the Aerospike cluster custom resource (CR) file. Sample Aerospike cluster CR files for different configurations can be found [here](https://github.com/aerospike/aerospike-kubernetes-operator/tree/1.0.0/config/samples/).
+Refer to the [cluster configuration settings](Cluster-configuration-settings.md) for details on the Aerospike cluster custom resource (CR) file. Sample Aerospike cluster CR files for different configurations can be found in the `aerospike-kubernetes-operator/config/samples` directory.
 
-This custom resource file can be edited later on to make any changes/manage the Aerospike cluster.
+You can edit this file at any time to make changes and manage the Aerospike cluster.
 
 
-## Deploy Aerospike cluster
+## Deploy the Aerospike Cluster
 
-Use the CR yaml file that you created to deploy an Aerospike cluster.
+Use the custom resource YAML file you created to deploy an Aerospike cluster. If you don't have a custom resource file, you can choose one of the sample files in the `config/samples` directory.
+
+For example, to use the `config/samples/dim_nostorage_cluster_cr.yaml` file:
+
 ```sh
-$ kubectl apply -f config/samples/dim_nostorage_cluster_cr.yaml
+kubectl apply -f config/samples/dim_nostorage_cluster_cr.yaml
 ```
 
 :::note
-Replace the file name with CR yaml file for your cluster.
+Replace the file name with the custom resource YAML file for your cluster.
 :::
 
-## Verify cluster status
-Ensure that the aerospike-kubernetes-operator creates a [StatefulSet](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/) for the CR.
+## Verify Cluster Status
+
+Use `kubectl get statefulset -n aerospike` to ensure the aerospike-kubernetes-operator creates a StatefulSet for the custom resource.
 
 ```sh
 $ kubectl get statefulset -n aerospike
@@ -89,7 +83,7 @@ NAME      READY   AGE
 aerocluster-0   2/2     24s
 ```
 
-Check the pods to confirm the status. This step may take time as the pod's provision resources, initialize, and are ready. Please wait for the pods to switch to the running state.
+Use `kubectl get pods -n aerospike` to check the pods to confirm the status. This step may take time as the pods provision resources, initialize, and are ready. Please wait for the pods to switch to the Running state before you continue.
 
 ```sh
 $ kubectl get pods -n aerospike
@@ -98,8 +92,4 @@ aerocluster-0-0     1/1     Running     0          48s
 aerocluster-0-1     1/1     Running     0          48s
 ```
 
-If the Aerospike cluster pods do not switch to Running status in a few minutes, please refer to [Troubleshooting](Troubleshooting.md) guide.
-
-## Next
-- [Cluster configuration settings](Cluster-configuration-settings.md)
-- [Connect to the Aerospike cluster](Connect-to-the-Aerospike-cluster.md)
+If the Aerospike cluster pods do not switch to Running status in a few minutes, please refer to the [Troubleshooting Guide](Troubleshooting.md).

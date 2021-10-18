@@ -2,15 +2,14 @@
 title: Limitations
 description: Limitations
 ---
-## General
 
 The following restrictions are currently in place and apply to any cluster managed by the operator.
 
 * aerospikeConfig cannot be empty
-* aerospikeConfig.namespace cannot be nil or empty
+* aerospikeConfig.namespace cannot be null or empty
 * ca-path in TLS config not allowed, Only ca-file is allowed
 * Strong consistency mode not yet supported
-* Warm restart only supported for configuration change with newer versions of Aerospike container image 
+* Warm restart only supported for configuration change with newer versions of Aerospike container image
 * All flash not yet supported
 
 ## When updating a cluster
@@ -42,6 +41,7 @@ These values cannot be given in aerospikeConfig in yaml config file. These are f
 * network.heartbeat.mode
 
 ## Cannot be updated
+
 The following values cannot be changed after the first deployment of a cluster
 * network.service.port
 * network.service.access-port
