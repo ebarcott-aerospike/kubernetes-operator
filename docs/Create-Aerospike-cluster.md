@@ -3,7 +3,7 @@ title: Create Aerospike Cluster
 description: Create Aerospike Cluster
 ---
 
-To deploy Aerospike using the Operator, you will create an Aerospike custom resource file which describes the cluster (including its number of nodes, the Aerospike configuration, system resources, etc.). You will then push that configuration file to your Kubernetes cluster(s).
+To deploy the Aerospike cluster using the Operator, you will create an Aerospike custom resource file, which describes the cluster (including its number of nodes, the Aerospike configuration, system resources, etc.). You will then apply that configuration file to your Kubernetes cluster(s).
 
 ## Prerequisites
 
