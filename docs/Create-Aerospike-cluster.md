@@ -7,10 +7,11 @@ To deploy the Aerospike cluster using the Operator, you will create an Aerospike
 
 ## Prerequisites
 
-Before creating your Aerospike cluster, you must:
+Before deploying your Aerospike cluster, you must [install the Aerospike Kubernetes Operator](Install-the-Operator-on-Kubernetes.md) on your Kubernetes cluster(s).
 
-* Download a copy of the Aerospike Kubernetes Operator GitHub repo (`aerospike-kubernetes-operator`) to your local computer. See [system requirements](System-Requirements.md) for more information.
-* [Install the Aerospike Kubernetes Operator](Install-the-Operator-on-Kubernetes.md) on your Kubernetes cluster(s).
+In order to follow along with this guide, download a copy of the Aerospike Kubernetes Operator GitHub repo (`aerospike-kubernetes-operator`) to your local computer. The repo contains scripts and other files which are used throughout this documentation as examples.
+
+Either clone this repo or download the ZIP file to your computer [from the GitHub page](https://github.com/aerospike/aerospike-kubernetes-operator)
 
 ## Prepare the Aerospike Cluster Configuration
 
@@ -20,7 +21,7 @@ The Aerospike Kubernetes Operator GitHub repo contains example YAML configuratio
 The following commands include file paths which are relative to the `aerospike-kubernetes-operator` directory. Be sure to either cd into this directory before you run the commands, or edit the command to include the correct file path for your system.
 :::
 
-The use case for your cluster will help you to determine which configuration parameters you need to set in the [custom resource (CR)](https://github.com/aerospike/aerospike-kubernetes-operator/wiki/Configuration) file. Identify your requirements for storage, if you plan to [enable XDR](XDR.md), or [manage TLS certificates](Manage-TLS-Certificates.md) for network security with your Aerospike clusters.
+The use case for your cluster will help you to determine which configuration parameters you need to set in the custom resource (CR) file. Identify your requirements for storage, if you plan to [enable XDR](XDR.md), or [manage TLS certificates](Manage-TLS-Certificates.md) for network security with your Aerospike clusters.
 
 ## Configure Persistent Storage
 
@@ -38,7 +39,7 @@ See [Storage Provisioning](Storage-provisioning.md) for more details on configur
 
 ## Create Secrets
 
-Next, create Secrets to set up features like Aerospike authentication, TLS, and the cluster admin password. See the [Manage TLS Certificates](Manage-TLS-Certificates.md) section for more details.
+Next, create Secrets to set up features like the license file (`features.conf`), Aerospike authentication, TLS, and the cluster admin password. See the [Manage TLS Certificates](Manage-TLS-Certificates.md) section for more details.
 
 The example `config/samples/secrets` directory includes a collection of example TLS certificates, security credentials, and more. Apply these files as a Kubernetes Secret:
 

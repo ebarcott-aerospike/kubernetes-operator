@@ -22,37 +22,35 @@ Create the `aerospike` namespace:
 kubectl create namespace aerospike
 ```
 
-Next, choose the scope of your Operator installation. You can install the Operator on:
+Next, choose the scope of your Operator installation.
 
-* A single namespace
-* Multiple namespaces
-* All available namespaces
+You will always install the Operator on a single namespace. However, the Operator can deploy and manage Aerospike clusters in multiple namespaces using the `MultiNamespace` or `AllNamespaces` install modes.
 
-### Install on a Single Namespace
+* A single namespace (default)
+* Multiple namespaces (`--install-mode MultiNamespace`)
+* All available namespaces (`--install-mode AllNamespaces`)
 
-To install the Operator only on the `aerospike` namespace, run the Operator bundle with the command:
+### Manage a Single Namespace (Default)
+
+To install the Operator on the `aerospike` namespace, and only use it to manage the `aerospike` namespace, run the Operator bundle with the command:
 
 ```shell
 operator-sdk run bundle docker.io/aerospike/aerospike-kubernetes-operator-bundle:2.0.0-rc1 --namespace=aerospike
 ```
 
-### Install on Multiple Namespaces
+### Manage Multiple Specific Namespaces
 
-Use `--install-mode MultiNamespace=[namespace],[namespace],[etc]` to install the Operator on multiple namespaces:
+Use `--install-mode MultiNamespace=[namespace 1],[namespace 1],[etc]` to manage Aerospike clusters on multiple specific namespaces. Specify the namespaces in a comma-separated list (no spaces).
 
-```shell
-operator-sdk run bundle docker.io/aerospike/aerospike-kubernetes-operator-bundle:2.0.0-rc1 --namespace=aerospike --install-mode MultiNamespace=[namespace],[namespace]
-```
-
-For example, to install the Operator on the namespaces `ns1` and `ns2` use the command:
+For example, to install the Operator on the `aerospike` namespace and use it to manage Aerospike clusters on the `ns1` and `ns2` namespaces, the command is:
 
 ```shell
 operator-sdk run bundle docker.io/aerospike/aerospike-kubernetes-operator-bundle:2.0.0-rc1 --namespace=aerospike --install-mode MultiNamespace=ns1,ns2
 ```
 
-### Install on All Namespaces
+### Manage All Namespaces
 
-Use `--install-mode AllNamespaces` to install the Operator on all available namespaces:
+Use `--install-mode AllNamespaces` to manage Aerospike clusters on all available namespaces:
 
 ```shell
 operator-sdk run bundle docker.io/aerospike/aerospike-kubernetes-operator-bundle:2.0.0-rc1 --namespace=aerospike --install-mode AllNamespaces

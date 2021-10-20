@@ -15,7 +15,7 @@ Configure the firewall rules for the Kubernetes cluster accordingly.
 
 See the [Cluster Configuration Settings](Cluster-configuration-settings.md) section for more information on using the `multiPodPerHost` setting.
 
-## Aerospike node endpoints
+## Aerospike Node Endpoints
 
 Use `kubectl describe` to get the IP addresses and port numbers:
 

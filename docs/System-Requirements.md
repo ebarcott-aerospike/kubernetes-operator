@@ -29,12 +29,6 @@ Your local computer (the computer where you will be running kubectl commands) ne
 * A copy of the files in the Aerospike Kubernetes Operator GitHub repo
 * Operator SDK CLI version 1.10.1
 
-### Copy Files from the Aerospike Kubernetes Operator GitHub Repo
-
-You need a copy of [the Aerospike Kubernetes Operator GitHub repo](https://github.com/aerospike/aerospike-kubernetes-operator) on your local computer. The repo contains scripts used by the Operator, as well as many files which are used throughout this documentation as examples.
-
-Either clone this repo or download the ZIP file to your computer [from the GitHub page](https://github.com/aerospike/aerospike-kubernetes-operator)
-
 ### Install the Operator SDK CLI
 
 Install operator-sdk version 1.10.1 using the installation [guide](https://v1-10-x.sdk.operatorframework.io/docs/installation/)
