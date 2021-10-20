@@ -23,7 +23,7 @@ Use `kubectl describe` to get the IP addresses and port numbers:
  kubectl -n [namespace] describe aerospikecluster [Aerospike_cluster name]
 ```
 
-For example, the to get the IP addresses and port numbers for the cluster `aerocluster` in the `aerospike` namespace is:
+For example, to get the IP addresses and port numbers for the cluster `aerocluster` in the `aerospike` namespace is:
 
 ```sh
 kubectl -n aerospike describe aerospikecluster aerocluster
