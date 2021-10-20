@@ -75,7 +75,7 @@ Replace the file name with the custom resource YAML file for your cluster.
 
 ## Verify Cluster Status
 
-Use `kubectl get statefulset -n aerospike` to ensure the aerospike-kubernetes-operator creates a StatefulSet for the custom resource.
+Use `kubectl get statefulset -n aerospike` to ensure the aerospike-kubernetes-operator creates the StatefulSets for the custom resource.
 
 ```sh
 $ kubectl get statefulset -n aerospike
