@@ -7,7 +7,7 @@ You can connect to an Aerospike cluster deployed by Aerospike Kubernetes Operato
 
 ## Port Access
 
-When the Aerospike cluster is deployed in a **single** pod per Kubernetes host mode, ports `3000 (service port)` and `4333 (TLS port)` on all Kubernetes hosts should be accessible to all clients and tools.
+When the Aerospike cluster is deployed in a **single** pod per Kubernetes host mode([`multiPodPerHost` set to default of 'false'](Cluster-configuration-settings/#pod-spec)), ports `3000 (service port)` and `4333 (TLS port)` on all Kubernetes hosts should be accessible to all clients and tools.
 
 When the Aerospike cluster is configured to have **multiple** pods per Kubernetes host mode, port range `(30000–32767)` on all Kubernetes hosts should be accessible to all clients and tools.
 
