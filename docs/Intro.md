@@ -24,7 +24,7 @@ The Operator supports the following capabilities:
 
 ## Architecture
 
-The Aerospike Kubernetes Operator has a custom controller (written in Go) that allows us to embed specific lifecycle management logic to effectively manage the state of an Aerospike cluster.  It does so by managing a Custom Resource Definition (CRD) to extend the Kubernetes API for Aerospike clusters.  Regular maintenance to the Aerospike cluster deployment and management can be performed by updating an Aerospike Enterprise cluster Custom Resource (CR).
+The Aerospike Kubernetes Operator has a custom controller (written in Go) that allows us to embed specific lifecycle management logic to manage the state of an Aerospike cluster.  It does so by managing a Custom Resource Definition (CRD) to extend the Kubernetes API for Aerospike clusters.  Regular maintenance to the Aerospike cluster deployment and management can be performed by updating an Aerospike Enterprise cluster Custom Resource (CR).
 
 The Operator is deployed with StatefulSet and operates as a headless service to handle the DNS resolution of pods in the deployment.  Kubernetes StatefulSets is the workload API object that is used to manage stateful applications.  It is important because it manages the deployment and scaling of a set of Pods, and provides guarantees about the ordering and uniqueness of these Pods (e.g. as unique addressable identities).
 
