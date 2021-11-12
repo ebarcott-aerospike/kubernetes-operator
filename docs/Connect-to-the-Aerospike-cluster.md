@@ -19,19 +19,19 @@ See the [Cluster Configuration Settings](Cluster-configuration-settings.md) sect
 
 Use `kubectl describe` to get the IP addresses and port numbers:
 
-```sh
+```shell
  kubectl -n [namespace] describe aerospikecluster [Aerospike_cluster name]
 ```
 
-For example, to get the IP addresses and port numbers for the cluster `aerocluster` in the `aerospike` namespace is:
+For example, to get the IP addresses and port numbers for the cluster `aerocluster` in the `aerospike` namespace:
 
-```sh
+```shell
 kubectl -n aerospike describe aerospikecluster aerocluster
 ```
 
-The **Status > Pods*** section provides pod-wise access, alternate access, TLS access, and TLS alternate access endpoints as well as TLS name (if TLS is configured) to be used to access the cluster.
+The **Status > Pods** section provides pod-wise access, alternate access, TLS access, and TLS alternate access endpoints as well as TLS name (if TLS is configured) to be used to access the cluster.
 
-```sh
+```shell
 $ kubectl -n aerospike describe aerospikecluster aerocluster
 Name:         aerocluster
 Namespace:    aerospike

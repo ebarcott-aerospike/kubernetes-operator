@@ -18,7 +18,7 @@ This documentation includes examples of various Aerospike configuration settings
 We recommend using [Operator Lifecycle Manager (OLM)](https://olm.operatorframework.io/]) to run and manage the Aerospike Kubernetes Operator in production environments. OLM is the preferred way to manage Kubernetes operators in production.
 
 :::note
-If you are deploying on OpenShift/OKD, you can skip this step. OLM is pre-installed on OpenShift. 
+If you are deploying on OpenShift/OKD, you can skip this step. OLM is pre-installed on OpenShift.
 :::
 
 Install OLM on your Kubernetes cluster with the command:
@@ -70,7 +70,7 @@ operator-sdk run bundle docker.io/aerospike/aerospike-kubernetes-operator-bundle
 
 ## RBAC
 
-For information on working with RBAC on multiple clusters, see [RBAC for other namespace](Multiple-Aerospike-clusters.md#rbac-for-other-namespaces).
+For information on working with RBAC on multiple clusters, see [RBAC for other namespace](Multiple-Aerospike-clusters.md).
 
 ## Verify the Operator is Running
 
