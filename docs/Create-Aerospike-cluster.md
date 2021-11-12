@@ -43,13 +43,13 @@ Next, create Secrets to set up features like the license file (`features.conf`),
 
 The example `config/samples/secrets` directory includes a collection of example TLS certificates, security credentials, and more. Apply these files as a Kubernetes Secret:
 
-```sh
+```shell
 kubectl  -n aerospike create secret generic aerospike-secret --from-file=config/samples/secrets
 ```
 
 Create a Secrets containing the password for Aerospike cluster admin:
 
-```sh
+```shell
 kubectl  -n aerospike create secret generic auth-secret --from-literal=password='admin123'
 ```
 
@@ -66,7 +66,7 @@ Use the custom resource YAML file you created to deploy an Aerospike cluster. If
 
 For example, to use the `config/samples/dim_nostorage_cluster_cr.yaml` file:
 
-```sh
+```shell
 kubectl apply -f config/samples/dim_nostorage_cluster_cr.yaml
 ```
 
@@ -78,7 +78,7 @@ Replace the file name with the custom resource YAML file for your cluster.
 
 Use `kubectl get statefulset -n aerospike` to ensure the aerospike-kubernetes-operator creates the StatefulSets for the custom resource.
 
-```sh
+```shell
 $ kubectl get statefulset -n aerospike
 NAME      READY   AGE
 aerocluster-0   2/2     24s
@@ -86,7 +86,7 @@ aerocluster-0   2/2     24s
 
 Use `kubectl get pods -n aerospike` to check the pods to confirm the status. This step may take time as the pods provision resources, initialize, and are ready. Please wait for the pods to switch to the Running state before you continue.
 
-```sh
+```shell
 $ kubectl get pods -n aerospike
 NAME          READY   STATUS      RESTARTS   AGE
 aerocluster-0-0     1/1     Running     0          48s
